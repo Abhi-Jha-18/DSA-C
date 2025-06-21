@@ -1,35 +1,35 @@
 #include <iostream>
-#include<vector>
+#include <vector>
 using namespace std;
-int binarysystem(vector<int>arr,int target){
+int recbinaryfinder(vector<int>arr,int target,int st, int end){
     int n = arr.size();
-    int st = 0, end = n-1;
-    while (st <= end)
+    if (st <= end)
     {
-        int mid = st + (end - st)/2;
-        if (target < arr[mid])
+        int mid = st + (end - st )/2 ;
+        if (target > arr[mid])
         {
-            end = mid-1;
+            return recbinaryfinder(arr,target, mid+1,end);
         }
-        else if (target > arr[mid])
+        else if (target < arr[mid])
         {
-            st = mid+1;
+            return recbinaryfinder(arr,target,st,mid -1);
         }
-        else{
+        else {
             return mid;
         }
         
-    }return -1;
-    
+    }
 
+    return -1;
 }
 int main()
 {
-    vector<int>arr1 = {1,4,5,6,7,8,9,19};
-    int target1 = 19;
-    cout << binarysystem(arr1,target1) << endl ;
-    vector<int>arr2 = {1,4,5,13,7,8,9};
-    int target2= 13;
-    cout << binarysystem(arr2,target2) << endl ;
-   return 0;
+  vector<int> arr1 = {1, 2, 4, 5, 6, 7, 8, 7}; // even
+    int target1 = 8;
+   cout << recbinaryfinder(arr1,target1,0,7) << endl;
+    vector<int> arr2 = {1, 2, 4, 5, 6, 7, 63}; // odd
+    int target2 = 7;
+    cout << recbinaryfinder(arr2, target2,0,6) << endl;
+    
+    return 0;
 }
