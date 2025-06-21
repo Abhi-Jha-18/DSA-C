@@ -1,0 +1,1 @@
+cout << binarysearch(arr1, target1) << endl;
