@@ -1,49 +1,61 @@
+//
 #include <iostream>
-#include <vector>
 using namespace std;
-int binarysoretedarray(vector<int> &arr, int target)
+#include <vector>
+bool isvalid(vector<int> &arr, int n, int m, int maxallowedpages)
 {
-    int n = arr.size();
-    int st = 0, end = n - 1;
-    
-    while (st <= end)
-    
-    {   int mid = st + (end - st) / 2;
-        if (arr[mid] == target)
+    int students = 1, pages = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] > maxallowedpages)
         {
-            return mid;
+            return false;
         }
-        if (arr[st] <= arr[mid])
+        if (pages + arr[i] <= maxallowedpages)
         {
-
-            if (arr[st] <= target && target <= arr[mid])
-            {
-                end = mid - 1;
-            }
-            else
-            {
-                st = mid + 1;
-            }
+            pages += arr[i];
         }
         else
         {
-            if (arr[mid] <= target && target <= arr[end])
-            {
-                st = mid + 1;
-            }
-            else
-            {
-                end = mid - 1;
-            }
+            students++;
+            pages = arr[i];
         }
     }
-    return -1;
+    return students > m ? false : true;
 }
+int allocation(vector<int> &arr, int m, int n)
+{
+    if (m > n)
+    {
+        return -1;
+    }
+    int sum = 0;
 
+    for (int i = 0; i < n; i++)
+    {
+        sum += arr[i];
+    }
+    int ans = -1;
+    int st = 0, end = sum; // range of possible answers
+    while (st <= end)
+    {
+        int mid = st + (end - st) / 2;
+        if (isvalid(arr, n, m, mid)) // left
+        {
+            ans = mid;
+            end = mid -  1;
+        }
+        else
+        {
+            st = mid + 1; // right
+        }
+    }
+    return ans;
+}
 int main()
 {
-    vector<int> arr1 = {4, 5, 6, 7, 0, 1, 2}; // even
-    int target1 = 5;
-    cout << binarysoretedarray(arr1, target1) << endl;
+    vector<int> arr = {15,17,20};
+    int n = 4, m = 2;
+    cout << allocation(arr, n, m) << endl;
     return 0;
 }
