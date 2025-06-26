@@ -1,60 +1,59 @@
 #include <iostream>
-#include <vector>;
+#include <vector>
 using namespace std;
-bool isvalid(vector<int> &arr, int n, int m, int maximumallowedpages ){
-    int students = 1, pages = 0 ;
-    int m = 0;
+bool isvalid(vector<int> &arr, int n, int m, int maximumallowedpages)
+{
+    int student = 0, pages = 0;
     for (int i = 0; i < n; i++)
     {
-        if (arr[i] > maximumallowedpages)
+        if (pages >= maximumallowedpages)
         {
             return false;
         }
-        if(pages + arr[i]){
+        if (pages + arr[i] <= maximumallowedpages)
+        {
             pages += arr[i];
         }
         else
         {
-            students ++;
-            pages  = arr[i];
+            student++;
+            pages = arr[i];
         }
-        
     }
-    return students > m ? false : true;
+    return student > m ? false : true;
 }
 int allocation(vector<int> &arr, int n, int m)
 {
-     int sum = 0;
     if (m > n)
     {
         return -1;
     }
-
+    int sum = 0;
     for (int i = 0; i < n; i++)
     {
-       
         sum += arr[i];
     }
-    int st = 0 , end = sum , ans = -1;
+    int ans = -1;
+    int st = 0, end = sum; // range of possible ans
     while (st <= end)
     {
-        int mid = st + (end - st)/2;
-        if (isvalid(arr,n,m,mid))//left
+        int mid = st + (end - st) / 2;
+        if (isvalid(arr, m, n, mid)) // left
         {
-            ans  =mid;
-            end  = mid-1;
+            ans = mid;
+            end = mid - 1;
         }
-        else{//right
-            st = mid +1;
+        else // right
+        {
+            st = mid + 1;
         }
-        return -1;
     }
-    
+    return ans;
 }
-    int main()
-    {
-         vector<int> arr = {1,2,3,4};
-         int  n = 4 , students = 2;
-         cout<< allocation(arr,n,m) << endl;
-        return 0;
-    }
+int main()
+{
+    vector<int> arr = {1, 2, 3, 4};
+    int n = 4, m = 2;
+    cout << allocation(arr, n, m) << endl;
+    return 0;
+}
