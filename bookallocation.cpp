@@ -42,7 +42,7 @@ int allocation(vector<int> &arr, int n, int m)
         {
             ans = mid;
             end = mid - 1;
-        }
+        } 
         else // right
         {
             st = mid + 1;
@@ -50,10 +50,10 @@ int allocation(vector<int> &arr, int n, int m)
     }
     return ans;
 }
-int main()
+int main()  
 {
-    vector<int> arr = {2,1,3,4};
-    int n = 4, m = 2;
+    vector<int> arr = {15,17,20};
+    int n = 3, m = 2;
     cout << allocation(arr, n, m) << endl;
     return 0;
 }
