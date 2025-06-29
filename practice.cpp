@@ -62,7 +62,7 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-bool ispossible(vector<int> &arr, int n, int c, int minspacereqiured)
+bool ispossible(vector<int &arr, int n, int c, int minspacereqiured)
 {
     int cows = 1, laststallposition = arr[0];
     for (int i = 1; i < n; i++)
@@ -98,7 +98,7 @@ int allowspace(vector<int> &arr, int n, int c)
             end = mid - 1;
         }
     }
-    return ans;
+     return ans;
 }
 
 int main()

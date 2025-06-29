@@ -6,10 +6,10 @@ bool ispossible(vector<int>&arr,int n ,int c,int maxallowedspace){
    int  cows = 1 , laststallposition = arr[0] ;
    for (int i = 1; i < n; i++)
    {
-      if (arr[i] - laststallposition >= maxallowedspace)
+      if (arr[i]-laststallposition >= maxallowedspace)
       {  
         cows++;
-        laststallposition += arr[i];
+        laststallposition = arr[i];
 
       }
       if (cows == c)
