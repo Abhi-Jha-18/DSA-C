@@ -2,10 +2,10 @@
 using namespace std;
 void insertivesort(int arr[], int n)
 {
-    for (int i = 0; i < n - 1; i++)
+    for (int i = 1; i < n ; i++)
     {
         int crr = arr[i];
-        int previous = i - 1;
+        int previous = i-1;
         while (previous >= 0 && arr[previous] > crr)
         {
             arr[previous+1] = arr[previous];
@@ -26,7 +26,7 @@ int main()
 
 {
     int n = 5;
-    int arr[] = {1, 4, 6, 8, 9};
+    int arr[] = {4,6,8,9,2};
     insertivesort(arr, n);
     printarray(arr, n);
 

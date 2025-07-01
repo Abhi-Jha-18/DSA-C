@@ -13,8 +13,8 @@ int selectionsort(int arr[], int n ){
             }
            
         }
-        
-     swap(arr[i],arr[smallestidx]);
+        swap(arr[i],arr[smallestidx]);
+     
         
     }
     
@@ -28,7 +28,7 @@ void printarray(int arr[] , int n ){
 }
 int main()
 { int n = 5;
-    int arr[] = {1,4,6,8,9};
+    int arr[] = {1,4,2,3,9};
     selectionsort(arr,n);
     printarray(arr,n);
     
