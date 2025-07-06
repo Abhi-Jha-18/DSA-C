@@ -2,19 +2,16 @@
 using namespace std;
 bool ispalindrome(string str)
 {
-   
-    {   int strt = 0, end = str.length() - 1;
-        while (strt <= end)
+
+    int strt = 0, end = str.length() - 1;
+    while (strt <= end)
+    {
+        if (str[strt] != str[end])
         {
-           if (str[strt] != str[end])
-           {
             return false;
-           }
-           
         }
-        return true;
     }
-   
+    return true;
 }
 int main()
 {
@@ -35,14 +32,14 @@ int main()
     //     cout << str[i] << " ";
     // }
     // cout<< endl;
-if(ispalindrome(str)){
-    cout<< "yes it is a palindrome" << endl;
-
-}
-else
-{
-    cout<< "string is not a palindrome" << endl;
-}
+    if (ispalindrome(str))
+    {
+        cout << "yes it is a palindrome" << endl;
+    }
+    else
+    {
+        cout << "string is not a palindrome" << endl;
+    }
 
     return 0;
 }
