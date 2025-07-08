@@ -1,1 +1,1 @@
- // int strt = 0, end = str.length() - 1;
+ n = n / 10;
